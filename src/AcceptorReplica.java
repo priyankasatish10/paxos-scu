@@ -32,7 +32,7 @@ public class AcceptorReplica extends Process {
             	if (!proposals.containsKey(s) && !decisions.containsKey(s)) {
 					proposals.put(s, c);
 					for (ProcessId ldr: leaders) {
-						sendMessage(ldr, new ProposeMessage(me, s, c));
+					    sendMessage(ldr, new ProposeMessage(me, s, c.setOp("Operation "+ s +"x")));
 					}
                     break;
 				}
@@ -48,6 +48,9 @@ public class AcceptorReplica extends Process {
 				return;
 			}
 		}
+        for (int sn: decisions.keySet()){
+            acceptedSet.add(decisions.get(sn));
+        }
 		System.out.println("" + me + ": execute " + c.toString() + " slot_num "+slot_num);
 		slot_num++;
 	}

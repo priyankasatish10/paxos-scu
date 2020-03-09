@@ -36,7 +36,7 @@ public class Leader extends Process {
 		    env.addProc(me, this);
             done = true;
         }
-        replica = new LeaderReplica(env, new ProcessId("lreplica:" + me.convToInt()), leaders, slot_num, this.weights);
+        replica = new LeaderReplica(env, new ProcessId("pReplica:" + me.convToInt()), leaders, slot_num, this.weights);
 	}
 
 	public void body(){
@@ -92,7 +92,7 @@ public class Leader extends Process {
               //  System.out.println(me+ " got preempted msg " + msg );
 				if (ballot_number.compareTo(m.ballot_number) < 0) {
 					ballot_number = new BallotNumber(m.ballot_number.round + 1, me);
-					System.out.println(me + " received premption. Incrementing ballot " + ballot_number);
+					System.out.println(me + " received preemption!!! Incrementing ballot " + ballot_number);
 				}
                 else if (ballot_number.compareTo(m.ballot_number) == 0) {
                     // the weights must be unequal. In this case do not change the ballot number, resend scout

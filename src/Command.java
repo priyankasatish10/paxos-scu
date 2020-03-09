@@ -9,6 +9,11 @@ public class Command {
 		this.op = op;
 	}
 
+	public Command setOp(String op) {
+		this.op = op;
+		return this;
+	}
+
 	public boolean equals(Object o) {
 		Command other = (Command) o;
 		return client.equals(other.client) && req_id == other.req_id && op.equals(other.op);

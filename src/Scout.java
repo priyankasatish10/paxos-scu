@@ -21,7 +21,7 @@ public class Scout extends Process {
 		P1aMessage m1 = new P1aMessage(me, ballot_number, weights);
         boolean[] added = new boolean[acceptors.length];
 
-		System.out.println(leader + " sending whats up message to all acceptors with ballot " + ballot_number);
+		System.out.println(leader + " sending What's up message to all acceptors with ballot " + ballot_number);
         for (ProcessId a: acceptors) {
 			sendMessage(a, m1);
 		}

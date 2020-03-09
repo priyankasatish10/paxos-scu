@@ -1,10 +1,10 @@
 public class BallotNumber implements Comparable {
 	int round;
-	ProcessId leader_id;
+	ProcessId _id;
 
-	public BallotNumber(int round, ProcessId leader_id){
+	public BallotNumber(int round, ProcessId _id){
 		this.round = round;
-		this.leader_id = leader_id;
+		this._id = _id;
 	}
 
 	public boolean equals(Object other){
@@ -16,10 +16,10 @@ public class BallotNumber implements Comparable {
 		if (bn.round != round) {
 			return round - bn.round;
 		}
-		return leader_id.compareTo(bn.leader_id);
+		return _id.compareTo(bn._id);
 	}
 
 	public String toString(){
-		return "BN(" + round + ", " + leader_id + ")";
+		return "BN(" + round + ", " + _id + ")";
 	}
 }

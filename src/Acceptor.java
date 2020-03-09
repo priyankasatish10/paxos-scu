@@ -62,7 +62,12 @@ public class Acceptor extends Process {
                     System.out.println(me + " Reached "+downMsgCount+" msgs, going to sleep for " + downTime/1000 + " secs !!!!!!!!");
                     doSleep = true;
                     replica.setDoSleep(true);
-                    Thread.sleep(downTime);
+                    int sleep = 1000;
+                    while (sleep < downTime) {
+                        Thread.sleep(sleep);
+                        System.out.println(me + " still sleeping");
+                        sleep += 1000;
+                    }
                     doSleep = false;
                     replica.setDoSleep(false);
                     System.out.println(me + " Just woke up !!!!!!!!!!!!");
@@ -87,6 +92,7 @@ public class Acceptor extends Process {
                 }
                 System.out.println(this.me + " promising audience with ballot number " + ballot_number);
                 sendMessage(m.src, new P1bMessage(me, ballot_number, new HashSet<PValue>(accepted), weights));
+                // if ballot number is same, then its a promise not to accept anything less than ballot number, if ballot number is higher its preemption
 
 			}
 			else if (msg instanceof P2aMessage) {
@@ -94,11 +100,11 @@ public class Acceptor extends Process {
 				P2aMessage m = (P2aMessage) msg;
 
                 if (weightsEqual(weights,m.weights)){
-                    if (ballot_number == null || ballot_number.compareTo(m.ballot_number) < 0) {
+                    if (ballot_number == null || ballot_number.compareTo(m.ballot_number) <= 0) {
                         ballot_number = m.ballot_number;
+                        System.out.println(this.me + " accepting command with  ballot " + ballot_number);
                     }
                 }
-                System.out.println(this.me + " accepting command with slot " + m.slot_number + " and  ballot " + ballot_number);
                 sendMessage(m.src, new P2bMessage(me, ballot_number, m.slot_number, weights));
 			}
 

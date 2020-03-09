@@ -67,8 +67,8 @@ public class Env {
 			Replica repl = new Replica(this, replicas[i], leaders);
 		} */
 		for (int i = 0; i < nLeaders; i++) {
-			leaders[i] = new ProcessId("leader:" + i);
-            replicas[k++] = new ProcessId("lreplica:"+i);
+			leaders[i] = new ProcessId("proposer:" + i);
+            replicas[k++] = new ProcessId("pReplica:"+i);
 			Leader leader = new Leader(this, leaders[i], acceptors, replicas, weights, leaders);
 		}
         ready = true;
@@ -130,7 +130,7 @@ public class Env {
                 switch (index) {
                     case 0:
                         String[] lineOne = sCurrentLine.split(",");
-                        if (lineOne.length < 4) {
+                        if (lineOne.length < 3) {
                             System.out.println("ERROR : you missed one of your processors altogether");
                             System.exit(-1);
                         }
@@ -184,10 +184,10 @@ public class Env {
         }
     //parsing complete
     System.out.println("<br> Config ****************************** ");
-    System.out.println("<br> Num Replicas  : "+nReplicas);
-    System.out.println("<br> Num Leaders   : "+nLeaders);
-    System.out.println("<br> Num Acceptors : "+nAcceptors);
-    System.out.println("<br> Num Requests  : "+nRequests);
+    System.out.println("<br> Number of Replicas  : "+nReplicas);
+    System.out.println("<br> Number of Proposers : "+nLeaders);
+    System.out.println("<br> Number of Acceptors : "+nAcceptors);
+    System.out.println("<br> Number of Requests  : "+nRequests);
     //System.out.print("<br> Init Weights  : ");
     //for (int i =0; i<nAcceptors; i++)
         //System.out.print( weights[i] + " ");

@@ -1,12 +1,12 @@
 ;Statements beginning with a ; are comments, will not be parsed
-;<Num Acceptors> , <Num Leaders> , <Num Requests>, <Weights 1:1:1:2:3:4>
-3, 1, 5, 1:1:1
-; <Num Replica>  = num_acc + num_leader
+;<Num Acceptors> , <Num Proposers> , <Num Requests>
+3, 2, 5
+; <Num Replica>  = num_acc + num_proposers
 ;debug msgs enable? 1 = enable, 0 disable 
 ;<Better not to enable this, needs thread lock to execute from env>
 0
-;  Num of msgs upon which Acceptor goes down, with downtime
+; Num of msgs upon which Acceptor goes down, with downtime
 ; < Acceptor id(starts from 0)>, <num of msgs to down>, <downtime in milliseconds>
-0,1,400000
-1,5,20000
+;0,1,30000
+;1,4,8000
 ; Dont put more acceptors than you have. Its unacceptable.
