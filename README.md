@@ -25,6 +25,6 @@ java Env input.txt
 
 
 ## Input file
-In the input fine we can modify number of proposers, number of acceptors and number of requests
+In the input file we can modify number of proposers, number of acceptors and number of requests
 
-We can simulate downtime in acceptors. Please follow instructions in input.txt
+We can simulate downtime in acceptors in input.txt. Please follow instructions in input.txt
