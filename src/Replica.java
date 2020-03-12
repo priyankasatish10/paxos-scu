@@ -19,8 +19,6 @@ public class Replica extends Process {
 
 	void propose(Command c, int s, boolean retry){
 		if (!decisions.containsValue(c)) {
-			//for (int s = 1;; s++) {
-                // fixme : tina : check if this is correct
                 // never proposed this slot before and no decision has been made on this slot
             if (retry) {
             	if (!proposals.containsKey(s) && !decisions.containsKey(s)) {

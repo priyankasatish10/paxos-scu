@@ -48,6 +48,9 @@ public class AcceptorReplica extends Process {
 				return;
 			}
 		}
+        for (int sn: decisions.keySet()){
+            acceptedSet.add(decisions.get(sn));
+        }
 		System.out.println("" + me + ": execute " + c.toString() + " slot_num "+slot_num);
 		slot_num++;
 	}
@@ -65,7 +68,6 @@ public class AcceptorReplica extends Process {
 		System.out.println("Here I am: " + me);
         PaxosMessage msg;
 		for (;;) {
-            // fixme : tina : see if this is really necessary
             if (!doSleep){
                 //msg = getNextMessageBlking();
                 msg = getNextMessageNonBlking();

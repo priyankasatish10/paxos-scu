@@ -30,7 +30,6 @@ public class Env {
 
     synchronized void sendHeartbeat(ProcessId src){
         // heartbeat sent to all leaders
-        // fixme how to make static variable like in c++?
         if (ready){
             for (ProcessId leaderId: leaders)
             {
