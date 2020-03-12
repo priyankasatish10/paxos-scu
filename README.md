@@ -10,11 +10,17 @@ Distributed Systems Spring 2020
 ## Commands to run the Project
 
 mkdir finalsubmission
+
 cd finalsubmission
+
 git clone https://github.com/priyankasatish10/paxos-scu.git
+
 cd paxos-scu
+
 javac src/*.java
+
 cd src
+
 java Env input.txt
 
 
